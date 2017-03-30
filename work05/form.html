@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>综合实例</title>
+		<meta charset="utf-8"/>
+	</head>
+	<body>
+		<font face="宋体">
+		<form action="" method="post">
+			<table border="1" cellspacing="0" width="420" height="450" align="center" bordercolor="#CCCCCC">
+				<tr>
+					<td width="79">用户名：</td>
+					<td width="309"><input type="text" name="用户名"></td>
+				</tr>
+				<tr>
+					<td width="79">密码：</td>
+					<td width="309"><input type="password" name="密码"></td>
+				</tr>
+				<tr>
+					<td width="79">确认密码：</td>
+					<td width="309"><input type="password" name="确认密码"></td>
+				</tr>
+				<tr>
+					<td width="79">性别：</td>
+					<td width="309"><input type="radio" name="sex">男　<input type="radio" name="sex">女</td>
+				</tr>
+				<tr>
+					<td width="79">生日：</td>
+					<td width="309">
+						<select name="公历">
+							<option value="gongli">公历</option>
+						</select>
+						<select name="年">
+							<option value="year">年</option>
+							<option value="2017">2017</option>
+						</select>
+						<select name="月">
+							<option value="month">月</option>
+							<option value="03">03</option>
+						</select>
+						<select name="日">
+							<option value="day">日</option>
+							<option value="27">27</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="79">所在地：</td>
+					<td width="309">
+						<select name="中国">
+							<option value="China">中国</option>
+							<option value="哈萨克斯坦">哈萨克斯坦</option>
+						</select>
+						<select name="河北">
+							<option value="province">河北</option>
+						</select>
+						<select name="石家庄">
+							<option value="shijiazhuang">石家庄</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="79">验证码：</td>
+					<td width="309"><input type="text" name="验证码"><img src="images/yanzhengma.jpg" width="74" height="21">
+				</tr>
+				<tr>
+					<td width="79">证件类型：</td>
+					<td width="309">
+						<select name="身份证">
+							<option value="id">身份证</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="79">证件号：</td>
+					<td width="309"><input type="text" name="证件号"></td>
+				</tr>
+				<tr>
+					<td width="79">爱好：</td>
+					<td width="309">
+						<input type="checkbox" name="like">音乐
+						<input type="checkbox" name="like">读书
+						<input type="checkbox" name="like">跳舞
+						<input type="checkbox" name="like">下棋
+						<input type="checkbox" name="like">其他
+					</td>
+				</tr>
+				<tr>
+					<td width="79">说明：</td>
+					<td width="309">
+						<textarea cols="25" rows="5">    
+						</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td width="79">上传图像</td>
+					<td width="309"><input type="file" name="上传图像"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" name="submit1">　<input type="reset" name="submit2">　<input type="button" name="submit3" value="按钮"></td>
+				</tr>
+			</table>
+		</form>
+		</font>
+	</body>
+</html>
