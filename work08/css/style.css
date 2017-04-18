@@ -1,0 +1,8 @@
+h2{text-align: center;}
+p,ul{font-family: "宋体";font-size: 18px;}
+.one{font-size: 14px;text-align: center;color: #cccccc;}
+.two{text-indent: 2em;}
+.three{color:#007faa ;font-weight: bold;text-decoration: none;}
+.four{color: #2a1fff;font-weight: bold;}
+.five{border: 1px dashed #e5e5e5; }
+#style{font-style: italic;}
