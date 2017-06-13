@@ -1,9 +1,6 @@
 .content{
-	background:url(../images/bg.jpg);
-	background-repeat:repeat;
 	margin-bottom:10px;
 	width:1000px;
-	overflow:hidden;
 }
 .content_left{
 	margin-top:10px;
