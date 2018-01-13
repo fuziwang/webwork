@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>web前端开发</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+    <!-- 页头部分 -->
+    <div class="header">
+        <div class="logo">
+            <img src="images/logo.jpg">
+            <img src="images/logo1.png" class="font">
+        </div>
+        <div class="form">
+            <p><a href="#">登录</a> | <a href="#">立即注册</a> | <a href="#">找回密码</a></p>
+            <input name="" type="text" value="" class="kuan" />
+            <input name="" type="submit" value="搜索" class="an" />
+        </div>
+        <div class="clear"></div>
+        <div class="menu">
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#">前端开发</a>
+                    <ul>
+                        <li><a href="#">JavaScript</a>
+                            <li><a href="#">HTML5</a>
+                                <li><a href="#">CSS3</a>
+                    </ul>
+                    </li>
+                    <li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#">学习资源</a>
+                        <ul>
+                            <li><a href="#">前端教程</a>
+                                <li><a href="#">前端框架</a>
+                                    <li><a href="#">前端教程</a>
+                                        <li><a href="#">文章归类</a>
+                                            <li><a href="#">前端图书</a>
+                                                <li><a href="#">前端资料库</a>
+                        </ul>
+                        </li>
+                        <script type="text/javascript">
+                            function displaySubMenu(li) {
+                                var subMenu = li.getElementsByTagName("ul")[0];
+                                subMenu.style.display = "block";
+                            }
+
+                            function hideSubMenu(li) {
+                                var subMenu = li.getElementsByTagName("ul")[0];
+                                subMenu.style.display = "none";
+                            }
+                        </script>
+                        <li><a href="#">设计建站</a></li>
+                        <li><a href="#">程序员职场</a></li>
+                        <li><a href="#">商务合作</a></li>
+                        <li><a href="#">一键咨询</a><img src="images/hot_1.png" id="hot"></li>
+            </ul>
+            <script src="js/jQuery.js"></script>
+            <script>
+                var curIndex = 0;
+                var timeInterval = 500;
+                var arr = new Array();
+                arr[0] = "images/hot_1.png";
+                arr[1] = "images/hot_2.png";
+                setInterval(changeImg, timeInterval);
+
+                function changeImg() {
+                    if (curIndex == arr.length - 1) {
+                        curIndex = 0;
+                    } else {
+                        curIndex += 1;
+                    }
+                    $('#hot').attr('src', arr[curIndex]);
+                }
+            </script>
+        </div>
+        <div class="clear"></div>
+        <div class="banner">
+            <div class="main_div">
+                <div class="arrows">
+                    <span title="1" class="arrow"><</span>
+                    <span title="0" class="arrow" style="float: right">></span>
+                </div>
+                <ul class="ul_img">
+                    <li class="li_img">
+                        <a href="#"><img src="images/1.jpg" /></a>
+                    </li>
+                    <li class="li_img">
+                        <a href="#"><img src="images/2.png" /></a>
+                    </li>
+                    <li class="li_img">
+                        <a href="#"><img src="images/3.png" /></a>
+                    </li>
+                    <li class="li_img">
+                        <a href="#"><img src="images/4.png" /></a>
+                    </li>
+                </ul>
+            </div>
+            <div style="margin-left: 350px">
+                <div class="div_btn"></div>
+                <div class="div_btn"></div>
+                <div class="div_btn"></div>
+                <div class="div_btn"></div>
+            </div>
+        </div>
+        <script>
+            //跑动的次数
+            var count = 0;
+            //动画的执行方向
+            var isgo = false;
+            //定义计时器对象
+            var timer;
+            window.onload = function() {
+                /*获取ul元素*/
+                var ul_img = document.getElementsByClassName("ul_img")[0];
+                //获取所有的li图片元素
+                var li_img = document.getElementsByClassName("li_img");
+                //获取控制方向的箭头元素
+                var arrow = document.getElementsByClassName("arrow");
+                //获取所有按钮元素
+                var div_btn = document.getElementsByClassName("div_btn");
+                div_btn[0].style.backgroundColor = "aqua";
+                /*定义计时器，控制图片移动*/
+                showtime();
+
+                function showtime() {
+                    timer = setInterval(function() {
+                        if (isgo == false) {
+                            count++;
+                            ul_img.style.transform = "translate(" + -1000 * count + "px)";
+                            if (count >= li_img.length - 1) {
+                                count = li_img.length - 1;
+                                isgo = true;
+                            }
+                        } else {
+                            count--;
+                            ul_img.style.transform = "translate(" + -1000 * count + "px)";
+                            if (count <= 0) {
+                                count = 0;
+                                isgo = false;
+                            }
+                        }
+                        for (var i = 0; i < div_btn.length; i++) {
+                            div_btn[i].style.backgroundColor = "aquamarine";
+                        }
+                        div_btn[count].style.backgroundColor = "aqua";
+                    }, 4000)
+                }
+                /*鼠标进入左右方向键操作*/
+                for (var i = 0; i < arrow.length; i++) {
+                    //鼠标悬停时
+                    arrow[i].onmouseover = function() {
+                            //停止计时器
+                            clearInterval(timer);
+                        }
+                        //鼠标离开时
+                    arrow[i].onmouseout = function() {
+                        //添加计时器
+                        showtime();
+                    }
+                    arrow[i].onclick = function() {
+                        //区分左右
+                        if (this.title == 0) {
+                            count++;
+                            if (count > 3) {
+                                count = 0;
+                            }
+                        } else {
+                            count--;
+                            if (count < 0) {
+                                count = 3;
+                            }
+                        }
+                        ul_img.style.transform = "translate(" + -1000 * count + "px)";
+                        for (var i = 0; i < div_btn.length; i++) {
+                            div_btn[i].style.backgroundColor = "aquamarine";
+                        }
+                        div_btn[count].style.backgroundColor = "aqua";
+                    }
+                }
+                //鼠标悬停在底部按钮的操作
+                for (var b = 0; b < div_btn.length; b++) {
+                    div_btn[b].index = b;
+                    div_btn[b].onmouseover = function() {
+                        clearInterval(timer);
+                        for (var a = 0; a < div_btn.length; a++) {
+                            div_btn[a].style.backgroundColor = "aquamarine";
+                        }
+                        div_btn[this.index].style.backgroundColor = "aqua";
+                        //让count值对应
+                        //为了控制方向
+                        if (this.index == 3) {
+                            isgo = true;
+                        }
+                        if (this.index == 0) {
+                            isgo = false;
+                        }
+                        count = this.index;
+                        ul_img.style.transform = "translate(" + -1000 * this.index + "px)";
+                    }
+                    div_btn[b].onmouseout = function() {
+                        //添加计时器
+                        showtime();
+                    }
+                }
+            }
+        </script>
+        <!-- 页体部分 -->
+        <div class="clear"></div>
+        <div class="content">
+            <p><a href="#">热门文章</a>
+                <a href="#"><img src="images/more.gif" class="more"></a>
+            </p>
+            <div class="show-text">
+                <div class="img">
+                    <a href="#"><img src="images/content_1.jpg"></a>
+                    <div>
+                        <h2>JavaScript代码片段</h2><b>精心收集的有用的 JavaScript 代码片段，你可以在30秒或更少的时间内理解。 有了这些代码片段，获取你可以完全抛弃 Lodash 或 Underscore。<b></div>
+			</div>
+			<div class="img">
+				<a href="#"><img src="images/content_2.jpg"></a>
+				<div><h2>JSON.parse()和JSON.stringify()</h2><b>这里介绍一下，我主要介绍一下 JSON.parse() 和 JSON.stringify() 的高级用法，可以在实际应用中给我们带来一些方便。</b></div>
+                </div>
+                <div class="img">
+                    <a href="#"><img src="images/content_3.jpg"></a>
+                    <div>
+                        <h2>19+ JavaScript 编码简写技巧</h2><b>对于任何基于 JavaScript 编程的开发人员来说，都有必要认证阅读一下这篇文章。 我写的这篇文章是学习 JavaScript 简写编码技巧的重要参考资料，这些技巧都是我多年学习和总结出来的。 为了有助于理解这些简写编码技巧，</b></div>
+                </div>
+                <div class="img">
+                    <a href="#"><img src="images/content_4.jpg"></a>
+                    <div>
+                        <h2>创建炫酷CSS背景效果的10个代码</h2><b>在现代网页设计中，大背景图设计非常流行。随着高清（现在是4K）显示器的出现，越来越多的网页设计师使用大背景图来填充屏幕。 为什么？因为这样可以造成很大的视觉冲击力，并有助于更好的传递所要表现的内容。</b></div>
+                </div>
+                <div class="img">
+                    <a href="#"><img src="images/content_5.jpg"></a>
+                    <div>
+                        <h2>JavaScript中的this:工作原理和陷阱</h2><b>在 JavaScript 中，this 是一个相对难懂的特殊变量。因为它随处可用，而不仅仅是面向对象的编程中。本文将解释 this 是如何工作的，以及它可能导致问题的地方，并在文章的给出最佳实践。</b></div>
+                </div>
+                <div class="img">
+                    <a href="#"><img src="images/content_6.jpg"></a>
+                    <div>
+                        <h2>学习CSS Grid布局</h2><b>这篇文章是 CSS Grid 布局有用的资源和教程，帮你快速了解相关知识。同时还比较了 CSS Grid 、 Flexbox 、 Table 布局之间的区别，及适用情况。</b></div>
+                </div>
+                <div class="img">
+                    <a href="#"><img src="images/content_7.jpg"></a>
+                    <div>
+                        <h2>CSS Grid布局示例大全</h2><b>这篇文章是 CSS Grid 布局示例集合。 如果想完整的学习CSS Grid 布局，请查看 CSS Grid 布局完全指南(图解 Grid 详细教程)，这里有 Grid 所有的术语，已经相关属性的详细介绍和示例。从示例中你也会看到 Flexbox 布局，</b></div>
+                </div>
+                <div class="img">
+                    <a href="#"><img src="images/content_8.jpg"></a>
+                    <div>
+                        <h2>换种方式理解 JavaScript 中的 this</h2><b>在这篇博文中，我将采取了一种不同的方式来解释 JavaScript 中的 this ：我假设箭头函数是真正的函数，而普通函数是特殊结构的方法。我认为这样更容易理解 this – 试试看。</b></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <p><a href="#">课程学习</a>
+                <a href="#"><img src="images/more.gif" class="more"></a>
+            </p>
+            <div class="study">
+                <div class="aa">
+                    <a href="#"><img src="images/study_1.png">
+                        <span>
+					<h2>HTML5基础</h2>
+					HTML5是最新的一项Web标准，在原有HTML4的基础上定义了一些新的标签和新的JavaScript API。
+				</span>
+                    </a>
+                </div>
+                <div class="aa">
+                    <a href="#"><img src="images/study_2.png">
+                        <span>
+					<h2>CSS3基础</h2>
+					CSS3在以前的基础上添加了诸多新的选择器以及新的样式。本课程将讲解CSS3新样式以及新特性。
+				</span>
+                    </a>
+                </div>
+                <div class="aa">
+                    <a href="#"><img src="images/study_3.png">
+                        <span>
+					<h2>网页制作与开发</h2>
+					本课程利用线上与线下相结合的授课方式，以网页开发主流软件Dreamweaver为工具，教给学生快速搭建网
+				</span>
+                    </a>
+                </div>
+                <div class="aa">
+                    <a href="#"><img src="images/study_4.png">
+                        <span>
+					<h2>jQuery</h2>
+					jQuery是web前端开发的常用技术,本课程将从理论基础+实战演练两方面对JQuery相关内容进行全面讲解。
+				</span>
+                    </a>
+                </div>
+                <div class="aa">
+                    <a href="#"><img src="images/study_5.png">
+                        <span>
+					<h2>JavaScript</h2>
+					Javascript 是世界上最流行的编程语言。应用Javascript可以构建交互效果丰富的Web应用。构建静态页面的动态效果。
+				</span>
+                    </a>
+                </div>
+                <div class="aa">
+                    <a href="#"><img src="images/study_6.png">
+                        <span>
+					<h2>web开发基础</h2>
+					HTML和CSS,HTML和CSS两部分内容分别从词汇、语法、语义三个方面介绍了常用的功能和语法。在服务器上建立网站，实现网站的访问。
+				</span>
+                    </a>
+                </div>
+                <script type="text/javascript">
+                    var aa = document.getElementsByClassName('aa');
+                    for (var i = 0; i < aa.length; i++) {
+                        aa[i].onmouseover = function() {
+                            this.getElementsByTagName('span')[0].style.display = 'block';
+                        }
+                        aa[i].onmouseout = function() {
+                            this.getElementsByTagName('span')[0].style.display = 'none';
+                        }
+                    }
+                </script>
+            </div>
+            <div class="clear"></div>
+            <p><a href="#">合作链接</a>
+                <a href="#"><img src="images/more.gif" class="more"></a>
+            </p>
+            <div class="link">
+                <div class="pic"><img src="images/link_1.jpg"></div>
+                <div class="pic"><img src="images/link_2.png"></div>
+                <div class="pic"><img src="images/link_3.png"></div>
+                <div class="pic"><img src="images/link_4.png"></div>
+                <div class="pic"><img src="images/link_5.png"></div>
+                <div class="pic"><img src="images/link_6.png"></div>
+                <div class="pic"><img src="images/link_7.jpg"></div>
+            </div>
+        </div>
+        <!-- 页尾部分 -->
+        <div class="clear"></div>
+        <div class="footer">
+            <div class="footer_link">
+                <a href="#">联系我们&nbsp;</a><span>|</span>
+                <a href="#">&nbsp;设为首页&nbsp;</a><span>|</span>
+                <a href="#">&nbsp;在线客服&nbsp;</a><span>|</span>
+                <a href="#">&nbsp;加入收藏&nbsp;</a><span>|</span>
+                <a href="#">&nbsp;网站地图&nbsp;</a><span>|</span>
+                <a href="#">&nbsp;关于版本</a>
+            </div>
+            <div class="clear"></div>
+            <div style="text-align: center;margin-top: -8px;">
+                <img src="images/line.jpg">
+            </div>
+            <p>Copyright@2013-2017 web前端开发，打造前端+后端+移动端的全栈工程师</p>
+            <p>冀ICP备05037795号 冀公网安备110402440008号</p>
+        </div>
+</body>
+
+</html>
